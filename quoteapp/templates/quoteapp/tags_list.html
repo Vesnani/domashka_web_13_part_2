@@ -1,0 +1,15 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+  <h2>Список тегів</h2>
+  <ul>
+    {% for tag in tags %}
+      <li><a href="{% url 'tag_detail' tag.pk %}">{{ tag.name }}</a></li>
+    {% empty %}
+      <li>На даний момент немає жодного тегу.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'create_tag' %}">Додати тег</a>
+  <br><br>
+  <a href="{% url 'main' %}">На головну</a>
+{% endblock %}

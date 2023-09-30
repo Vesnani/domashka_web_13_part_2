@@ -1,0 +1,10 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+<h1>Authors</h1>
+<ul>
+    {% for author in authors %}
+    <li><a href="{% url 'quoteapp:author_detail' pk=author.pk %}">{{ author.fullname }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

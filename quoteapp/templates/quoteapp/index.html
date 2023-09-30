@@ -1,0 +1,20 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+<h1>Welcome to Quotes App</h1>
+<p>Select an option:</p>
+<ul>
+    <li><a href="{% url 'quoteapp:create_quote' %}">Add a Quote</a></li>
+    <li><a href="{% url 'quoteapp:create_tag' %}">Add a Tag</a></li>
+    <li><a href="{% url 'quoteapp:authors_list' %}">View Authors</a></li> <!-- Додано -->
+    <li><a href="{% url 'quoteapp:quotes_list' %}">View Quotes</a></li> <!-- Додано -->
+</ul>
+
+{% for quote in quotes %}
+    <h1>{{ quote.quote }}</h1>
+    <p>Author: {{ quote.author.fullname }}</p>
+    <p>Tags: {% for tag in quote.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <a href="{% url 'quoteapp:detail' quoteid=quote.id %}">Read more</a>
+    <a href="{% url 'quoteapp:delete_quote' quoteid=quote.id %}">Delete</a>
+{% endfor %}
+{% endblock %}

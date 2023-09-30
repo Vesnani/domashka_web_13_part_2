@@ -1,0 +1,10 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+<h1>Quotes</h1>
+<ul>
+    {% for quote in quotes %}
+    <li><a href="{% url 'quoteapp:quote_detail' pk=quote.pk %}">{{ quote.quote }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

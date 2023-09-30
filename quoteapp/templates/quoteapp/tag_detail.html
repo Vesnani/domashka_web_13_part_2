@@ -1,0 +1,13 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+  <h1>Tag Detail</h1>
+  <p><strong>Tag Name:</strong> {{ tag.name }}</p>
+  <p><strong>Quotes with this tag:</strong></p>
+  <ul>
+    {% for quote in tag.quotes.all %}
+      <li><a href="{% url 'quoteapp:quote_detail' quote.pk %}">{{ quote.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'quoteapp:tags_list' %}">Back to Tags List</a>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <form method="POST" action="{% url 'quoteapp:create_quote' %}">
+        {% csrf_token %}
+        <div style="padding: 10px">
+            <label> Quote author:
+                {{ quote_form.author }}
+            </label>
+            <span>{{ quote_form.errors.author }}</span>
+        </div>
+        <div style="padding: 10px">
+            <label> Quote:
+                {{ quote_form.quote }}
+            </label>
+            <span>{{ quote_form.errors.quote }}</span>
+        </div>
+        <div style="padding: 10px">
+            <label> Select tags:
+                {{ quote_form.tags }}
+            </label>
+            <span>{{ quote_form.errors.tags }}</span>
+        </div>
+        <div class="grid">
+            <button type="submit">Submit</button>
+            <button type="reset" class="secondary">Reset</button>
+        </div>
+    </form>
+{% else %}
+    <p>You must be <a href="{% url 'users:login' %}">logged in</a> to create a quote.</p>
+{% endif %}
+{% endblock %}
